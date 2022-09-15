@@ -14,8 +14,36 @@
 
 
 -- Dumping database structure for blog_project
-CREATE DATABASE IF NOT EXISTS `blog_project` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `blog_project` /*!40100 DEFAULT CHARACTER SET utf8_general_ci */;
 USE `blog_project`;
+
+-- Dumping structure for table blog_project.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `image` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8_general_ci;
+
+-- Dumping data for table blog_project.users: ~7 rows (approximately)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+-- INSERT INTO `users` (`id`, `name`, `slug`, `email`, `password`, `image`) VALUES
+	(1, 'Kim Ji Soo Update', 'hpw-009', 'jisoo@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/3.jpg'),
+	(2, 'Sehun', 'aa-008', 'sehun@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/sehun.jpg'),
+	(3, 'Manoban La Lisa (Black Pink)', 'smmt-1500', 'lisa@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/8.jpg'),
+	(4, 'Jennie Kim', '4', 'jennie@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/jennie.jpg'),
+	(5, 'Harry Style ', '', 'harrystyle@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/Harry1.jpg'),
+	(7, 'Park Rosanne  Update', '', 'rose@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/4.jpg');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+
 
 -- Dumping structure for table blog_project.articles
 CREATE TABLE IF NOT EXISTS `articles` (
@@ -31,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   KEY `category_id` (`category_id`),
   CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8_general_ci;
 
 -- Dumping data for table blog_project.articles: ~12 rows (approximately)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
@@ -61,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `article_comments` (
   KEY `article_id` (`article_id`),
   CONSTRAINT `article_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `article_comments_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8_general_ci;
 
 -- Dumping data for table blog_project.article_comments: ~34 rows (approximately)
 /*!40000 ALTER TABLE `article_comments` DISABLE KEYS */;
@@ -108,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `article_languages` (
   `language_id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8_general_ci;
 
 -- Dumping data for table blog_project.article_languages: ~22 rows (approximately)
 /*!40000 ALTER TABLE `article_languages` DISABLE KEYS */;
@@ -145,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `article_likes` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `article_id` (`article_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8_general_ci;
 
 -- Dumping data for table blog_project.article_likes: ~15 rows (approximately)
 /*!40000 ALTER TABLE `article_likes` DISABLE KEYS */;
@@ -175,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `slug` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8_general_ci;
 
 -- Dumping data for table blog_project.categories: ~2 rows (approximately)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
@@ -190,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `slug` varchar(300) NOT NULL,
   `name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8_general_ci;
 
 -- Dumping data for table blog_project.languages: ~2 rows (approximately)
 /*!40000 ALTER TABLE `languages` DISABLE KEYS */;
@@ -200,29 +228,3 @@ INSERT INTO `languages` (`id`, `slug`, `name`) VALUES
 	(3, 'linux', 'Linux');
 /*!40000 ALTER TABLE `languages` ENABLE KEYS */;
 
--- Dumping structure for table blog_project.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `image` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
--- Dumping data for table blog_project.users: ~7 rows (approximately)
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `slug`, `email`, `password`, `image`) VALUES
-	(1, 'Kim Ji Soo Update', 'hpw-009', 'jisoo@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/3.jpg'),
-	(2, 'Sehun', 'aa-008', 'sehun@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/sehun.jpg'),
-	(3, 'Manoban La Lisa (Black Pink)', 'smmt-1500', 'lisa@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/8.jpg'),
-	(4, 'Jennie Kim', '4', 'jennie@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/jennie.jpg'),
-	(5, 'Harry Style ', '', 'harrystyle@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/Harry1.jpg'),
-	(7, 'Park Rosanne  Update', '', 'rose@gmail.com', '$2y$10$PX2ubnF/dWiQYpkqxQ1RHuK64W6kd1C3fapppuZ9zO5AFBLiXUGTO', 'assets/users/4.jpg');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
